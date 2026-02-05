@@ -27,6 +27,7 @@ pipeline {
                 sshagent(credentials: ['deploy-ssh-key']) {
                     sh """
                         rsync -az --delete \
+                          -e "ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o BatchMode=yes" \
                           --exclude .git \
                           --exclude __pycache__ \
                           --exclude .pytest_cache \
