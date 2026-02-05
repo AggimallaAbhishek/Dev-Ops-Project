@@ -6,8 +6,11 @@ from flask_sqlalchemy import SQLAlchemy
 db = SQLAlchemy()
 
 
-def create_app():
+def create_app(test_config=None):
     app = Flask(__name__)
+
+    if test_config:
+        app.config.update(test_config)
 
     db_user = os.getenv("DB_USER", "app")
     db_password = os.getenv("DB_PASSWORD", "app_password")
