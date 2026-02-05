@@ -13,11 +13,20 @@
 - `GET /results` list results
 - `POST /results` create result
 
-Example:
+Example (local):
 ```bash
+curl http://localhost:8000/
 curl -X POST http://localhost:8000/results \
   -H 'Content-Type: application/json' \
   -d '{"student_name":"Asha","subject":"Math","score":95}'
+curl http://localhost:8000/results
+```
+
+Example (deployed VM):
+```bash
+# replace with your public IP
+curl http://YOUR_VM_IP:8000/
+curl http://YOUR_VM_IP:8000/results
 ```
 
 ## Jenkins CI/CD (separate VM)
