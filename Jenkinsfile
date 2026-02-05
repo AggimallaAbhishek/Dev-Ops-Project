@@ -18,7 +18,7 @@ pipeline {
             steps {
                 sh 'python3 -m pip install --upgrade pip'
                 sh 'python3 -m pip install -r requirements.txt -r requirements-dev.txt'
-                sh 'pytest -q'
+                sh 'python3 -m pytest -q'
             }
         }
 
@@ -33,7 +33,7 @@ pipeline {
                           --exclude .venv \
                           ./ ${DEPLOY_USER}@${DEPLOY_HOST}:${DEPLOY_PATH}
 
-                        ssh ${DEPLOY_USER}@${DEPLOY_HOST} \"cd ${DEPLOY_PATH} && docker compose up -d --build\"
+                        ssh ${DEPLOY_USER}@${DEPLOY_HOST} \"cd ${DEPLOY_PATH} && docker-compose up -d --build\"
                     """
                 }
             }
